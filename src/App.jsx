@@ -1,15 +1,17 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Navigation from './components/Navigation/Navigation'
+import Orb from './components/orb/Orb'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const[active,setActive] = useState(1);
   return (
     <>
-      <div className="font-bold text-xl">
-      Whereas recognition of the inherent dignity
+      <div className="h-[100vh] relative font-bold text-xl">
+        <Orb/>
+        <main className='p-8 h-[100%] flex gap-8'>
+          <Navigation active={active} setActive={setActive}/>
+        </main>
       </div>
     </>
   )
