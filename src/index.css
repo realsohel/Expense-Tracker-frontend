@@ -16,7 +16,7 @@
   --primary-color3:  rgba(34,34,96,.4);
   --color-green: #42AD00;
   --color-grey: #aaa;
-  --color-accent: #f56692;
+  --color-accent: rgb(177, 82, 245);
   --color-delete: #FF0000;
 }
 
@@ -30,4 +30,8 @@ body{
 
 .primary-color2{
   color: var(--color-grey);
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }

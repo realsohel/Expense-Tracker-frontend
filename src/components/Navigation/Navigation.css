@@ -39,10 +39,10 @@
 }
 
 .active{
-    color: rgba(34,34,96,1);
+    color: rgba(34,34,96,1) !important;
     
     i{
-        color: rgba(34,34,96,1);
+        color: rgba(34,34,96,1) !important;
     }
     &::before{
         content:"";
@@ -55,14 +55,3 @@
         border-radius: 0 10px 10px 0;
     }
 }
-
-/* .active &::before{
-    content:"";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 4px;
-    height: 100%;
-    background: #222260;
-    border-radius: 0 10px 10px 0;
-} */
