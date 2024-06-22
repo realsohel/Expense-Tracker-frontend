@@ -1,6 +1,5 @@
 import React from 'react'
 import avatar from '/images/avatar.webp'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { menuItem } from '../../utils/menuItems'
 import { signout } from '../../utils/Icons'
 import "./Navigation.css"

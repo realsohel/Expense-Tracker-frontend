@@ -5,8 +5,8 @@ import { useGlobalContext } from '../../context/globalContext';
 import './Form.css'
 import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
-const Form = () => {
-    const {addIncome,error} = useGlobalContext(); 
+const ExpenseForm = () => {
+    const {addExpense} = useGlobalContext(); 
     const[inputState, setInputState] = useState({
         title:"",
         amount:"",
@@ -23,9 +23,7 @@ const Form = () => {
 
     const handleSubmit = (e)=>{
         e.preventDefault();
-        addIncome(inputState)
-        error?alert(error.message):""
-        console.log(error)
+        addExpense(inputState)
         // console.log(inputState)
         setInputState({
             title: '',
@@ -35,6 +33,7 @@ const Form = () => {
             description: '',
         })
     }
+
     return (
         <div onSubmit={handleSubmit} className=' no-scrollbar mt-2 flex flex-col gap-6'>
             <div className="input-control">
@@ -42,7 +41,7 @@ const Form = () => {
                     type="text"
                     name='title'
                     value={title}
-                    placeholder='Income Title'
+                    placeholder='Expense Title'
                     onChange={onChange}
                     required
                 />
@@ -52,7 +51,7 @@ const Form = () => {
                     type='number'
                     name='amount'
                     value={amount}
-                    placeholder='Income amount'
+                    placeholder='Expense amount'
                     onChange={onChange}
                     required
                 />
@@ -74,12 +73,13 @@ const Form = () => {
                     className='text-[rgba(34,34,96,0.4)] focus:text-[rgba(34,34,96,1)] active:text-[rgba(34,34,96,1)]'
                 >
                     <option value=""  disabled >Select Option</option>
-                    <option value="salary">Salary</option>
-                    <option value="freelancing">Freelancing</option>
-                    <option value="investments">Investments</option>
-                    <option value="stocks">Stocks</option>
-                    <option value="bitcoin">Bitcoin</option>
-                    <option value="bank">Bank Transfer</option>  
+                    <option value="education">Education</option>
+                    <option value="groceries">Groceries</option>
+                    <option value="health">Health</option>
+                    <option value="subscription">Subscription</option>
+                    <option value="takeaways">Takeaways</option>
+                    <option value="clothing">Clothing</option>  
+                    <option value="travelling">Travelling</option>  
                     <option value="other">Other</option>  
                 </select>
             </div>
@@ -90,7 +90,7 @@ const Form = () => {
             </div>
             <div className="submit-btn mb-4" onClick={handleSubmit}>
                 <Button
-                    name={'Add Income'}
+                    name={'Add Expense'}
                     icon={plus}
                     bPad={'.8rem 1.6rem'}
                     bRad={'30px'}
@@ -102,4 +102,4 @@ const Form = () => {
     )
 }
 
-export default Form
+export default ExpenseForm;
