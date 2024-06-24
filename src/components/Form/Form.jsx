@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
 import { useGlobalContext } from '../../context/globalContext';
 import './Form.css'
 import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
+import { toast } from 'react-toastify';
 const Form = () => {
-    const {addIncome,error} = useGlobalContext(); 
+    const {addIncome,error,setError} = useGlobalContext(); 
     const[inputState, setInputState] = useState({
         title:"",
         amount:"",
@@ -20,13 +21,18 @@ const Form = () => {
     const onChange = (e)=>{
         setInputState({...inputState , [e.target.name]:e.target.value});
     }
-
-    const handleSubmit = (e)=>{
+    const handleSubmit = async(e)=>{
         e.preventDefault();
-        addIncome(inputState)
-        error?alert(error.message):""
+
+        const res = await addIncome(inputState)
+        
+        if (res.error) {
+            setError(res.error);
+            toast.error(res.error, { position: "bottom-right" });
+        } else {
+            toast.success(res.message, { position: "bottom-right" });
+        }
         console.log(error)
-        // console.log(inputState)
         setInputState({
             title: '',
             amount: '',
@@ -34,9 +40,17 @@ const Form = () => {
             category: '',
             description: '',
         })
+        setError(null)
     }
+    
+    useEffect(()=>{
+        if (error) {
+            console.log(error);
+        }
+    },[error])
     return (
         <div onSubmit={handleSubmit} className=' no-scrollbar mt-2 flex flex-col gap-6'>
+            
             <div className="input-control">
                 <input 
                     type="text"
@@ -66,6 +80,7 @@ const Form = () => {
                     onChange={(date)=>{
                         setInputState({...inputState,date:date});
                     }}
+                    maxDate={new Date()}
                     required
                 />
             </div>

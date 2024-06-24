@@ -3,18 +3,19 @@ import { useGlobalContext } from '../../context/globalContext'
 import IncomeItem from '../IncomeItem/IncomeItem';
 
 const Transactions = () => {
-    const {incomes,getIncomes, expenses,getExpenses,transactionHistory} = useGlobalContext();
+    const {transactionHistory} = useGlobalContext();
     const [...history] = transactionHistory()
     return (
         <div className='p-4  '>   
             <h1 className='text-3xl p-2'>All Transactions</h1>
-
-            <div className="incomes grid grid-cols-2 gap-4">
+            {
+            history.length===0 ? <div className=' absolute  top-1/2 items-center w-full text-center'>
+                    OOps!! Nothing to Show...
+                </div> : <div className="incomes grid grid-cols-2 gap-4">
                     {
                         Array.isArray(history) && history.map((hist)=>{
                             const {_id,amount,category,date,description,title,type} = hist
                             return <IncomeItem
-                                    key={_id} 
                                     id={_id}
                                     amount={amount} 
                                     category={category} 
@@ -27,6 +28,9 @@ const Transactions = () => {
                         })
                     }
                 </div>
+            }
+
+            
         </div>
     )
 }

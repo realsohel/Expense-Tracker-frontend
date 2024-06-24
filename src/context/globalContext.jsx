@@ -9,12 +9,23 @@ export const GlobalProvider = ({children})=>{
 
 
     const addIncome = async(income) =>{
+        
         try {
             const response = await axios.post(`${BASE_URL}/add-income`,income);
             getIncomes();
+            console.log(response)
+            if (response.status !== 200 || response.data.status !== 200) {
+                const errorMessage = response.data.message || 'An error occurred';
+                console.log(errorMessage);
+                setError(errorMessage);
+                return { error: errorMessage };
+            }
+            return response.data;
         } catch (error) {
-            setError(error.message);
-            console.log(error.message)
+            const errorMessage = error.response?.data?.message || error.message || 'An unexpected error occurred';
+            setError(errorMessage);
+            console.log(errorMessage);
+            return { error: errorMessage };
         }
     }
 
@@ -53,9 +64,12 @@ export const GlobalProvider = ({children})=>{
         try {
             const response = await axios.post(`${BASE_URL}/add-expense`,expense);
             getExpenses();
+            return response.data;
         } catch (error) {
-            setError(error.message);
-            console.log(error.message)
+            const errorMessage = error.response?.data?.message || error.message || 'An unexpected error occurred';
+            setError(errorMessage);
+            console.log(errorMessage);
+            return { error: errorMessage };
         }
     }
 

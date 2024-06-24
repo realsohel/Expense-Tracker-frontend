@@ -5,14 +5,17 @@ import "./Income.css"
 import IncomeItem from '../IncomeItem/IncomeItem'
 import { rupees } from '../../utils/Icons'
 const Incomes = () => {
-    const {getIncomes,incomes,deleteIncomes,totalIncome} = useGlobalContext();
+    const {getIncomes,incomes,deleteIncomes,totalIncome,error} = useGlobalContext();
     
     useEffect(()=>{
         getIncomes()
+
     },[])
-    // console.log(incomes)
     return (
-        <div className='no-scrollbar p-4  '>   
+        <>
+        
+        {(
+            <div className='no-scrollbar p-4  '>
             <h1 className='text-3xl p-2'>Incomes</h1>
             <h2 className='total-income'>Total Income : <span>{rupees}{totalIncome()}</span> </h2>
             <div className="income-container flex overflow-auto gap-2">
@@ -39,8 +42,11 @@ const Incomes = () => {
                     }
                 </div>
             </div>
+            </div>
+        )}
+        </>
+            
         
-        </div>
     )
 }
 

@@ -4,13 +4,11 @@ import Button from '../Button/Button'
 import "./IncomeItem.css"
 import { dateFormat, firstLetterCapital } from '../../utils/dateFormat'
 function IncomeItem({
-    key,
     id,
     amount,
     category,
     date,
     description,
-    indicatorColor,
     title,type,
     deleteItem
 }){
@@ -62,7 +60,7 @@ function IncomeItem({
     }
     
     return (
-        <div className='income-item'>
+        <div className='income-item' key={id}>
             <div className="icon">
                 {type==='expense'?expenseCatIcon():categoryIcon()}
             </div>

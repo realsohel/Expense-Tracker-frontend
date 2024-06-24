@@ -15,7 +15,7 @@ const Expenses = () => {
     useEffect(()=>{
         getExpenses()
     },[])
-    // console.log(incomes)
+    
     return (
         <div className='no-scrollbar p-4  '>   
             <h1 className='text-3xl p-2'>Expenses</h1>

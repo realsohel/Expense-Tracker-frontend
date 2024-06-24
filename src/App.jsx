@@ -30,6 +30,7 @@ function App() {
   }
   return (
     <>
+    
       <div className="h-[100vh] relative font-bold text-xl">
         <Orb/>
         <main className='p-8 h-[100%] flex gap-8'>
@@ -39,6 +40,8 @@ function App() {
           </main>
         </main>
       </div>
+      
+
     </>
   )
 }
