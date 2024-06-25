@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 // import { BASE } from "../../config";
 // const BASE_URL = "http://localhost:5000/api/v1";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const BASE_URL = "https://expense-tracker-backend-sohel.onrender.com/api/v1/";
 const GlobalContext = createContext();
 import axios from 'axios'
 export const GlobalProvider = ({children})=>{
