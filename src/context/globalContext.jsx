@@ -1,5 +1,9 @@
 import { createContext, useContext, useState } from "react";
-const BASE_URL = "http://localhost:5000/api/v1";
+
+// import { BASE } from "../../config";
+// const BASE_URL = "http://localhost:5000/api/v1";
+
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 const GlobalContext = createContext();
 import axios from 'axios'
 export const GlobalProvider = ({children})=>{
